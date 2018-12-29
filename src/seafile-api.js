@@ -82,7 +82,7 @@ class SeafileAPI {
     const url =  this.server + '/api2/account/info/';
     return this.req.get(url);
   }
-  
+
   //---- Group operation
   listGroups() {
     const url = this.server + '/api2/groups/';
@@ -118,7 +118,7 @@ class SeafileAPI {
     }
     return this.req.put(url, params);
   }
-  
+
   deleteGroup(groupID) {
     const url = this.server + '/api/v2.1/groups/' + groupID + '/';
     return this.req.delete(url);
@@ -184,12 +184,12 @@ class SeafileAPI {
     form.append('permission', permission);
     return this._sendPostRequest(url, form);
   }
-  
+
   deleteGroupOwnedLibrary(groupID, repoID) {
     const url = this.server + '/api/v2.1/groups/'+ groupID + '/group-owned-libraries/' + repoID+ '/';
     return this.req.delete(url);
   }
-  
+
   shareGroupOwnedRepoToUser(repoID, permission, username) {
     const url = this.server + '/api/v2.1/group-owned-libraries/' + repoID + '/user-share/'
     let form = new FormData();
@@ -350,7 +350,7 @@ class SeafileAPI {
   deleteShareToUserItem(repoID, path, shareType, username) {
     path = encodeURIComponent(path);
     const url = this.server + '/api2/repos/' + repoID + '/dir/shared_items/?p=' + path + '&share_type=' + shareType + '&username=' + username;
-    return this.req.delete(url); 
+    return this.req.delete(url);
   }
 
   updateShareToUserItemPermission(repoID, path, shareType, username, permission) {
@@ -370,7 +370,7 @@ class SeafileAPI {
     const url = this.server + '/api2/repos/' + repoID + '/dir/shared_items/?p=' + path + '&share_type=' + shareType + '&group_id=' + groupID;
     return this.req.delete(url);
   }
-  
+
   updateShareToGroupItemPermission(repoID, path, shareType, groupID, permission) {
     path = encodeURIComponent(path);
     const url = this.server + '/api2/repos/' + repoID + '/dir/shared_items/?p=' + path + '&share_type=' + shareType + '&group_id=' + groupID;
@@ -389,7 +389,7 @@ class SeafileAPI {
     return this.req.get(url);
   }
 
-  getSharedRepos() { 
+  getSharedRepos() {
     const url = this.server + '/api2/shared-repos/';
     return this.req.get(url);
   }
@@ -420,7 +420,7 @@ class SeafileAPI {
       }
     }
     const url = this.server + '/api2/repos/' + repoID + '/dir/shared_items/?p=' + path;
-    return this.req.put(url, form); 
+    return this.req.put(url, form);
   }
 
   listSharedFolders() {
@@ -438,12 +438,12 @@ class SeafileAPI {
     return this.req.delete(url, {params: options});
   }
 
-  //---- repo(library) operation 
+  //---- repo(library) operation
   createMineRepo(repo) {
     const url = this.server + '/api2/repos/?from=web';
     return this.req.post(url, repo);
   }
-  
+
   createGroupRepo(groupID, repo) {
     const url = this.server + '/api/v2.1/groups/'+ groupID + '/libraries/';
     let form = new FormData();
@@ -483,7 +483,7 @@ class SeafileAPI {
       }
     });
   }
-  
+
   getRepoInfo(repoID) {
     const url = this.server + '/api/v2.1/repos/' + repoID + '/';
     return this.req.get(url);
@@ -500,7 +500,7 @@ class SeafileAPI {
     form.append('keep_days', historyDays);
     return this.req.put(url, form);
   }
-  
+
   deleteRepo(repoID) {
     const url = this.server + '/api/v2.1/repos/' + repoID + '/';
     return this.req.delete(url);
@@ -550,7 +550,7 @@ class SeafileAPI {
     return this.req.get(url, {params: searchParams, cancelToken : cancelToken});
   }
 
-  //admin 
+  //admin
   listDeletedRepo() {
     const url = this.server + '/api/v2.1/deleted-repos/';
     return this.req.get(url);
@@ -630,7 +630,7 @@ class SeafileAPI {
     form.append('file_names', fileNames);
     return this._sendPostRequest(url, form);
   }
-  
+
   moveDir(repoID, dstrepoID, dstfilePath, dirPath, direntNames) {
     let fileNames = direntNames;
     if (Array.isArray(direntNames)) {
@@ -768,7 +768,7 @@ class SeafileAPI {
   }
 
   getUploadLink(repoID, folderPath) {
-    const url = this.server + '/api2/repos/' + repoID + '/upload-link/?p=' + encodeURIComponent(folderPath) + '&from=web';
+    const url = this.server + '/api2/repos/' + repoID + '/upload-link/?p=' + encodeURIComponent(folderPath) + '&replace=0';
     return this.req.get(url);
   }
 
@@ -1106,7 +1106,7 @@ class SeafileAPI {
     const url = this.server + '/ajax/get_popup_notices/';
     return this.req.get(url, { headers: {'X-Requested-With': 'XMLHttpRequest'}});
   }
-  
+
   updateNotifications() {
     const url = this.server + '/api/v2.1/notifications/';
     return this.req.put(url);
@@ -1122,7 +1122,7 @@ class SeafileAPI {
     const url = this.server + '/api2/devices/';
     return this.req.get(url);
   }
-  
+
   unlinkDevice(platform, device_id) {
     const url = this.server + "/api2/devices/";
     let param = {
@@ -1131,7 +1131,7 @@ class SeafileAPI {
     };
     return this.req.delete(url, {data: param});
   }
-  
+
   //---- Activities API
   listActivities(pageNum, avatarSize=36) {
     const url = this.server + '/api/v2.1/activities/?page=' + pageNum + '&size=' + avatarSize;
